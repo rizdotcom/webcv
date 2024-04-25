@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Smooth Scroll Behavior</title>
+<style>
+    .container {
+        height: 300px; /* Tinggi div */
+        overflow-y: auto; /* Membuat scrollbar vertikal jika konten lebih panjang */
+    }
+    .box {
+        height: 1000px; /* Konten yang lebih panjang dari div */
+    }
+    #section1 {
+        background-color: #f0f0f0;
+    }
+    #section2 {
+        background-color: #ccc;
+    }
+    #section3 {
+        background-color: #999;
+    }
+    .link {
+        display: block; /* Menjadikan tautan sebagai blok */
+        padding: 10px; /* Menambahkan ruang di sekitar tautan */
+        text-decoration: none; /* Menghapus dekorasi bawaan tautan */
+        color: #000; /* Warna teks tautan */
+        cursor: pointer; /* Menjadikan kursor menjadi pointer saat menunjuk ke tautan */
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div class="box" id="section1">Section 1</div>
+    <div class="box" id="section2">Section 2</div>
+    <div class="box" id="section3">Section 3</div>
+    <a class="link" href="#section1">Scroll to Section 1</a>
+    <a class="link" href="#section2">Scroll to Section 2</a>
+    <a class="link" href="#section3">Scroll to Section 3</a>
+</div>
+
+<script>
+    // Menambahkan event listener untuk setiap tautan yang merujuk ke ID di halaman
+    document.querySelectorAll('.container a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault(); // Mencegah perilaku default
+            
+            const target = document.querySelector(this.getAttribute('href'));
+            
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth' }); // Mengatur perilaku scroll menjadi halus
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
